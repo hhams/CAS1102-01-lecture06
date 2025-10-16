@@ -7,13 +7,22 @@ int main() {
 
     // TODO: Implement the main function to print out secret code from codeArray using pointerArray.
 
+
     //  1) Build an index map:
     //     Scan the first half of codeArray. Each position p contains a rank from 1 to n.
     //     At index i of pointerArray, store a pointer to the cell in ascending order of rank.
+    for (int i = 0; i < n; ++i) {
+    int rank = codeArray[i];            // rank is 1..n
+    pointerArray[rank - 1] = &codeArray[i];
+}
 
     //  2) Decode and print:
     //     Iterate index of pointerArray i from 0 to n-1.
     //     For each i, move forward by n elements to reach the paired ASCII code in the second half of codeArray.
     //     Convert that ASCII value to a character and print it.
-
+    for (int i = 0; i < n; ++i) {
+    int asciiValue = *(pointerArray[i] + n);  // go n ahead
+    std::cout << static_cast<char>(asciiValue);
+}
+std::cout << std::endl;
 }
